@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/blog/dist/css/bootstrap.css">
+    <script src="/static/blog/dist/js/bootstrap.min.js"></script>
+    <script src="/static/blog/dist/jQuery3.6.0.js"></script>
+
+</head>
+<body>
+<h2>登录页面</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="user">用户名</label>
+                    <input type="text" ID="user" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">密码</label>
+                    <input type="password" id="pwd" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="vid">验证码：</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" id="vid" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <img width="270" height="40" src="/get_validCode_img/" alt="" id="random_img">
+
+                        </div>
+                    </div>
+                </div>
+                <input type="button" value="submit" class="btn btn-primary login_btn"><span class="error"></span>
+                <a href="/register/" class="btn btn-danger pull-right">注册</a>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<script>
+    // 刷新验证码
+    $("#random_img").click(function () {
+        $(this)[0].src += "?"
+    });
+    // 登陆验证
+    $(".login_btn").click(function () {
+        $.ajax({
+            url: "/login/",
+            type: "post",
+            data: {
+                user: $("#user").val(),
+                pwd: $("#pwd").val(),
+                vid: $("#vid").val(),
+                csrfmiddlewaretoken:$("[name='csrfmiddlewaretoken']").val(),
+            },
+            success: function (data) {
+                console.log(data)
+                if (data.user){
+                    location.href="/index/"
+                }
+                else {
+                    $(".error").text(data.msg).css({"color":"red","margin-left":10})
+                    setTimeout(function () {
+                        $(".error").text("")
+                    },2000)
+                }
+
+
+            }
+        })
+    })
+
+
+</script>
+</body>
+</html>

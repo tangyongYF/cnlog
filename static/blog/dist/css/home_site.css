@@ -1,0 +1,28 @@
+   * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            width: 100%;
+            height: 60px;
+            background-color: #369;
+        }
+
+        .header .title {
+            font-size: 18px;
+            font-weight: 100;
+            line-height: 60px;
+            color: white;
+            margin-left: 15px;
+            margin-top: -10px;
+        }
+
+        .backend {
+            float: right;
+            font-size: 16px;
+            text-decoration: none;
+            margin-right: 15px;
+            color: white;
+            margin-top: 10px;
+        }

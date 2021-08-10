@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home_site</title>
+{#    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>#}
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/blog/dist/css/bootstrap.css">
+    <script src="/static/blog/dist/js/bootstrap.min.js"></script>
+    <script src="/static/blog/dist/jQuery3.6.0.js"></script>
+    <link rel="stylesheet" href="/static/blog/dist/css/home_site.css">
+    <link rel="stylesheet" href="/static/blog/dist/css/article_detail.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="content">
+        <p class="title">
+            <span>{{ blog.title }}</span>
+            <a href="" class="backend">管理</a>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+                  <div class="panel panel-danger">
+                <div class="panel-heading">我的标签</div>
+                <div class="panel-body">
+                    {% for tag in tag_title_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/tag/{{ tag.0 }}/">{{ tag.0 }}({{ tag.1 }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">我的随笔</div>
+                <div class="panel-body">
+                    {% for cate in blog_category_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/category/{{ cate.title }}/">{{ cate.title }}({{ cate.c }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+                    <div class="panel panel-success">
+                <div class="panel-heading">随笔归档</div>
+                <div class="panel-body">
+                    {% for date in date_title_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/archive/{{ date.0 }}/">{{ date.0 }}({{ date.1 }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 clearfix">
+            {% block  content %}
+
+            {% endblock %}
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+                <div class="panel panel-danger">
+                <div class="panel-heading">我的标签</div>
+                <div class="panel-body">
+                    {% for tag in tag_title_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/tag/{{ tag.0 }}/">{{ tag.0 }}({{ tag.1 }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">我的随笔</div>
+                <div class="panel-body">
+                    {% for cate in blog_category_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/category/{{ cate.title }}/">{{ cate.title }}({{ cate.c }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+                    <div class="panel panel-success">
+                <div class="panel-heading">随笔归档</div>
+                <div class="panel-body">
+                    {% for date in date_title_num %}
+                        <p><a href="http://127.0.0.1:8000/index/{{ username }}/archive/{{ date.0 }}/">{{ date.0 }}({{ date.1 }})</a></p>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+</div>
+
+</body>
+</html>
